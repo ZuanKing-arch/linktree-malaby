@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malaby | Links RGB Elegant</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-color:#000;
+  --card-bg: rgba(0,0,0,0.35);
+  --card-border: rgba(255,255,255,0.25);
+  --text-color:#fff;
+  --accent-color:#4caf50;
+}
+
+body{
+  font-family:'Press Start 2P',cursive;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  position:relative;
+  text-align:center;
+  padding:40px 20px;
+}
+
+/* Video Background */
+#bgVideo{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-5;
+  opacity:0.6;
+}
+
+/* Stars */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:-4;pointer-events:none;}
+.star{position:absolute;width:3px;height:3px;background:white;border-radius:50%;opacity:0.8;animation:fall 3s linear infinite;}
+@keyframes fall{0%{transform:translateY(-10px);}100%{transform:translateY(100vh);}}
+
+/* Profile */
+.profile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  position:relative;
+  z-index:5;
+}
+.top-text{
+  font-size:0.8em;
+  color:var(--accent-color);
+  margin-bottom:8px;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+@keyframes glowText {
+  0% { text-shadow: 0 0 5px #4caf50, 0 0 10px #00ff00; transform: scale(1); }
+  50% { text-shadow: 0 0 10px #4caf50, 0 0 20px #00ff00; transform: scale(1.05); }
+  100% { text-shadow: 0 0 5px #4caf50, 0 0 10px #00ff00; transform: scale(1); }
+}
+
+/* Elegant RGB Border Foto Profil */
+.profile img {
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  padding:5px; /* tebal border */
+  background: conic-gradient(#ff0000,#ff9900,#33ff00,#00ffff,#3300ff,#ff00ff,#ff0000);
+  mask: radial-gradient(farthest-side, #fff 98%, #000 100%);
+  -webkit-mask: radial-gradient(farthest-side, #fff 98%, #000 100%);
+  animation: rotateBorder 4s linear infinite;
+  object-fit:cover;
+  box-shadow:0 0 20px rgba(76,175,80,0.6);
+  transition: transform 0.3s;
+}
+@keyframes rotateBorder{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+}
+.profile img:hover{transform:scale(1.08);}
+
+.profile h1{font-size:1.1em;cursor:pointer;margin-top:8px;}
+.profile p{font-size:0.7em;opacity:0.9;margin-bottom:20px;}
+
+/* Social links vertical */
+.social-links{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-top:20px;
+  z-index:5;
+  width:260px;
+}
+.social-links a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 18px;
+  background: var(--card-bg);
+  border:2px solid var(--card-border);
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--text-color);
+  transition:0.3s;
+  justify-content:flex-start;
+}
+.social-links a img{
+  width:35px;
+  height:35px;
+}
+.social-links a span{
+  font-size:0.85em;
+}
+.social-links a:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px var(--accent-color);
+  color:var(--accent-color);
+}
+
+/* Footer */
+.footer{text-align:center;font-size:0.55em;opacity:0.8;margin:30px 0;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-thumb{background:#4caf50;border-radius:5px;}
+::-webkit-scrollbar-track{background:#3c2f1f;}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0.6);backdrop-filter: blur(4px);z-index:20;justify-content:center;align-items:center;}
+.modal{background: var(--card-bg);border:2px solid var(--card-border);border-radius:10px;padding:20px;width:90%;max-width:350px;text-align:center;color: var(--text-color);position:relative;box-shadow:0 0 20px rgba(76,175,80,0.6);}
+.modal h2{margin-bottom:15px;color:var(--accent-color);font-size:0.65em;}
+.modal input{padding:6px;width:80%;margin-bottom:12px;border-radius:5px;border:1px solid var(--card-border);background:rgba(255,255,255,0.1);color:var(--text-color);}
+.modal button{padding:7px 14px;border:none;border-radius:5px;background:var(--accent-color);color:#fff;cursor:pointer;transition:0.2s;font-size:0.65em;}
+.modal button:hover{opacity:0.9;transform:scale(1.05);}
+.modal .close-btn{position:absolute;top:5px;right:8px;cursor:pointer;font-weight:bold;font-size:0.8em;color:var(--accent-color);}
+</style>
+</head>
+<body>
+
+<video autoplay muted loop id="bgVideo">
+  <source src="video_background.mp4" type="video/mp4">
+</video>
+
+<div class="stars" id="stars"></div>
+
+<div class="profile">
+  <div class="top-text">Selamat datang di link saya!</div>
+  <img src="profil_saya.png" alt="Profile Photo" id="profilePic">
+  <h1 id="profileName">MALABY</h1>
+  <p id="profileBio">Desain Grafis And Programing
+                        Portofolio Coming Soon..
+  </p>
+
+  <div class="social-links">
+    <a href="https://youtube.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube Logo"><span>YouTube</span>
+    </a>
+    <a href="https://instagram.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Logo"><span>Instagram</span>
+    </a>
+    <a href="https://github.com/malaby" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub Logo"><span>GitHub</span>
+    </a>
+    <a href="https://spotify.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111624.png" alt="Spotify Logo"><span>Spotify</span>
+    </a>
+    <a href="https://yourportfolio.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Portfolio Logo"><span>Portfolio</span>
+    </a>
+  </div>
+</div>
+
+<div class="footer">Made with 💚 by <b>Malaby</b> | Hosted on GitHub Pages</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <span class="close-btn" id="modalClose">×</span>
+    <h2>MAU COBA GANTI YA? WKWK</h2>
+    <input type="password" id="passInput" placeholder="Masukkan password">
+    <br>
+    <button id="passBtn">Submit</button>
+  </div>
+</div>
+
+<script>
+// Stars
+const starsContainer=document.getElementById('stars');
+function createStar(){const star=document.createElement('div');star.classList.add('star');star.style.left=Math.random()*100+'vw';star.style.animationDuration=(2+Math.random()*3)+'s';star.style.opacity=Math.random();starsContainer.appendChild(star);setTimeout(()=>star.remove(),3000);}
+setInterval(createStar,100);
+
+// Load profile
+const storedHash="218091dfaf7683f998c8c623c26c5eb27c7fcf123f932973f77b115425032e23"; // SHA256 malabyy20070311
+const nameEl=document.getElementById('profileName');
+const bioEl=document.getElementById('profileBio');
+const modalOverlay=document.getElementById('modalOverlay');
+const passInput=document.getElementById('passInput');
+const passBtn=document.getElementById('passBtn');
+const modalClose=document.getElementById('modalClose');
+
+window.addEventListener('load',()=>{
+  if(localStorage.getItem('profileName')) nameEl.textContent=localStorage.getItem('profileName');
+  if(localStorage.getItem('profileBio')) bioEl.textContent=localStorage.getItem('profileBio');
+});
+
+// Password popup
+async function checkPassword(pass){
+  const enc=new TextEncoder();
+  const buf=await crypto.subtle.digest('SHA-256',enc.encode(pass));
+  const hashHex=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  return hashHex===storedHash;
+}
+function showModal(editTarget){
+  modalOverlay.style.display='flex';
+  passInput.value='';
+  passInput.focus();
+  passBtn.onclick=async ()=>{
+    const valid=await checkPassword(passInput.value);
+    if(!valid){ alert("Password salah!"); return; }
+    modalOverlay.style.display='none';
+    const newVal=prompt(`Masukkan ${editTarget==='name'?'nama':'bio'} baru:`);
+    if(newVal){
+      if(editTarget==='name'){ nameEl.textContent=newVal; localStorage.setItem('profileName',newVal);}
+      else { bioEl.textContent=newVal; localStorage.setItem('profileBio',newVal);}
+    }
+  };
+}
+modalClose.onclick=()=>{ modalOverlay.style.display='none'; };
+nameEl.addEventListener('click',()=>showModal('name'));
+bioEl.addEventListener('click',()=>showModal('bio'));
+</script>
+</body>
+</html>
