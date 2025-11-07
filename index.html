@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malaby | Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: radial-gradient(circle at top, #2b0057, #000);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text-color: #fff;
+      --accent-color: #b47bff;
+    }
+
+    body.light {
+      --bg-color: radial-gradient(circle at top, #dcd4ff, #fff);
+      --card-bg: rgba(0, 0, 0, 0.08);
+      --card-border: rgba(0, 0, 0, 0.1);
+      --text-color: #000;
+      --accent-color: #7b3efc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      scroll-behavior: smooth;
+      transition: background 1s, color 1s;
+    }
+
+    /* Animasi bintang jatuh */
+    .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 80px; background: linear-gradient(180deg, white, transparent); opacity: 0.8; animation: fall 3s linear infinite; }
+    @keyframes fall { 0% { transform: translateY(-100px) translateX(0); opacity: 1; } 100% { transform: translateY(100vh) translateX(50px); opacity: 0; } }
+
+    .toggle-mode {
+      position: fixed; top: 20px; right: 20px;
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 6px 14px; cursor: pointer;
+      font-size: 0.9em; transition: 0.3s; color: var(--text-color); z-index: 10;
+    }
+    .toggle-mode:hover { background: var(--accent-color); color: #fff; }
+
+    .profile { text-align: center; padding-top: 80px; }
+    .logo { font-size: 2em; font-weight: 700; letter-spacing: 1px; color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color), 0 0 20px #5d2ca0; margin-bottom: 10px; }
+    .profile img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--accent-color); object-fit: cover; margin: 15px 0; box-shadow: 0 0 25px rgba(180,123,255,0.5); cursor: pointer; transition: 0.3s; }
+    .profile img:hover { transform: scale(1.05); }
+
+    .upload-btn { background: var(--accent-color); border: none; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 0.9em; cursor: pointer; transition: 0.3s; margin-bottom: 15px; }
+    .upload-btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+    .profile h1 { font-size: 1.6em; margin-bottom: 5px; }
+    .profile p { font-size: 0.9em; opacity: 0.9; margin-bottom: 30px; }
+
+    .links { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 80px; padding: 0 20px; }
+    .link-card { width: 90%; max-width: 400px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; backdrop-filter: blur(6px); text-align: center; padding: 15px 25px; box-shadow: 0 0 15px rgba(180,123,255,0.2); transition: transform 0.3s, box-shadow 0.3s; }
+    .link-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(180,123,255,0.4); }
+    .link-card a { color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 1.1em; }
+
+    .socials { display: flex; justify-content: center; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
+    .socials img { width: 35px; height: 35px; filter: drop-shadow(0 0 5px var(--accent-color)); transition: transform 0.3s; }
+    .socials img:hover { transform: scale(1.2); }
+
+    .footer { text-align: center; font-size: 0.85em; opacity: 0.8; margin-bottom: 30px; }
+
+    @media (max-width: 600px) {
+      .profile img { width: 110px; height: 110px; }
+      .link-card { width: 95%; }
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #5d2ca0; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #0a001a; }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <button class="toggle-mode" id="toggleMode">🌙 Dark Mode</button>
+
+  <div class="profile">
+    <div class="logo">Malaby</div>
+    <img src="https://i.imgur.com/0y8Ftya.png" alt="Profile Photo" id="profilePic">
+    <br>
+    <input type="file" accept="image/*" id="uploadInput" style="display:none">
+    <button class="upload-btn" id="uploadBtn">Ganti Foto</button>
+    <h1 id="profileName">Malaby</h1>
+    <p id="profileBio">Desain Grafis And Programing</p>
+  </div>
+
+  <div class="links">
+    <div class="link-card"><a href="https://www.instagram.com/mlbycant/" target="_blank">Instagram</a></div>
+    <div class="link-card"><a href="https://youtube.com" target="_blank">YouTube</a></div>
+    <div class="link-card"><a href="https://github.com/ZuanKing-arch" target="_blank">GitHub</a></div>
+    <div class="link-card"><a href="https://spotify.com" target="_blank">Spotify</a></div>
+    <div class="link-card"><a href="https://yourportfolio.com" target="_blank">Portfolio</a></div>
+  </div>
+
+  <div class="socials">
+    <a href="https://www.instagram.com/mlbycant/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+    <a href="https://youtube.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+    <a href="https://github.com/ZuanKing-arch" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"></a>
+    <a href="https://spotify.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111624.png" alt="Spotify"></a>
+    <a href="https://yourportfolio.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Portfolio"></a>
+  </div>
+
+  <div class="footer">
+    Made with by <b>Malaby</b> | Hosted on GitHub Pages
+  </div>
+
+  <script>
+    const password = "malabyy20070311"; // ganti dengan password kamu
+
+    function askPassword(action) {
+      const pass = prompt(`Masukkan password untuk ${action}:`);
+      return pass === password;
+    }
+
+    // Elemen profil
+    const nameEl = document.getElementById('profileName');
+    const bioEl = document.getElementById('profileBio');
+    const picEl = document.getElementById('profilePic');
+    const inputFile = document.getElementById('uploadInput');
+    const uploadBtn = document.getElementById('uploadBtn');
+
+    // Load data dari localStorage
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('profileName')) nameEl.textContent = localStorage.getItem('profileName');
+      if (localStorage.getItem('profileBio')) bioEl.textContent = localStorage.getItem('profileBio');
+      if (localStorage.getItem('profilePic')) picEl.src = localStorage.getItem('profilePic');
+      if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+    });
+
+    // Edit nama & bio dengan password
+    nameEl.addEventListener('click', () => {
+      if (!askPassword('mengganti nama')) return alert("Password salah!");
+      const name = prompt('Masukkan nama kamu:', localStorage.getItem('profileName') || '');
+      if (name) { nameEl.textContent = name; localStorage.setItem('profileName', name); }
+    });
+
+    bioEl.addEventListener('click', () => {
+      if (!askPassword('mengganti bio')) return alert("Password salah!");
+      const bio = prompt('Masukkan bio kamu:', localStorage.getItem('profileBio') || '');
+      if (bio) { bioEl.textContent = bio; localStorage.setItem('profileBio', bio); }
+    });
+
+    // Upload foto dengan password
+    uploadBtn.addEventListener('click', () => {
+      if (!askPassword('mengganti foto profil')) return alert("Password salah!");
+      inputFile.click();
+    });
+
+    inputFile.addEventListener('change', () => {
+      const file = inputFile.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        picEl.src = e.target.result;
+        localStorage.setItem('profilePic', e.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Mode dark/light
+    const toggleMode = document.getElementById('toggleMode');
+    toggleMode.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const mode = document.body.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('theme', mode);
+      toggleMode.textContent = mode === 'light' ? '🌞 Light Mode' : '🌙 Dark Mode';
+    });
+
+    // Animasi bintang jatuh
+    const starsContainer = document.getElementById('stars');
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (2 + Math.random() * 3) + 's';
+      star.style.opacity = Math.random();
+      starsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 3000);
+    }
+    setInterval(createStar, 150);
+  </script>
+</body>
+</html>
